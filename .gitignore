@@ -1,0 +1,12 @@
+# vim related
+*~
+*.swp
+
+# python related
+__pycache__
+# PyCharm related
+.idea
+
+# VIPer related
+*.png
+*.pdf
