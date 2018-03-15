@@ -13,4 +13,4 @@ principal congruence subgroup of level 2 of the modular group.
  - implement different tilings
  - implement more flexibility for the isometries
  - draw other subgroup tesselations
- - draw the dirichlet domain for a group given by generators
+ - draw the dirichlet domain for a group given by generators (branch dirichlet)
