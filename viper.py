@@ -52,7 +52,7 @@ def main_animation(isom_type='hyperbolic'):
     ani_type = this_animation[isom_type]
 
     Geodesic.plot_all()
-    animation.FuncAnimation(Geodesic.fig,
+    ani = animation.FuncAnimation(Geodesic.fig,
                             ani_type[0],
                             it.repeat(ani_type[1], 1000), repeat=False,
                             interval=50)
