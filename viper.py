@@ -34,6 +34,7 @@ do_this.add_argument('-t', '--tesselate', action='store_true')
 do_this.add_argument('-s', '--subgroup', action='store_true')
 
 parser.add_argument('-o', '--output', default=None, help='save the animation as an mp4 file')
+parser.add_argument('-f', '--frames', default=201, help='number of frames')
 
 args = parser.parse_args()
 
@@ -48,15 +49,15 @@ def main_animation(isom_type='hyperbolic'):
     Geodesic.tesselate(4)
     this_animation = {
         'hyperbolic': (Geodesic.animate_hyperbolic_translation, 1.01),
-        'parabolic': (Geodesic.animate_translation, 0.01),
-        'elliptic': (Geodesic.animate, np.pi / 300)
+        'parabolic': (Geodesic.animate_translation, 1/(args.frames-1)),
+        'elliptic': (Geodesic.animate, np.pi / (args.frames-1))
     }
     ani_type = this_animation[isom_type]
 
     Geodesic.plot_all()
     ani = animation.FuncAnimation(Geodesic.fig,
                             ani_type[0],
-                            it.repeat(ani_type[1], 1000), repeat=False,
+                            frames=args.frames, fargs=(ani_type[1],), repeat=True,
                             interval=50)
 
     if args.output is None:

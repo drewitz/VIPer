@@ -117,19 +117,25 @@ class Geodesic:
 
     # Animations
     @classmethod
-    def animate_persistent(cls, dphi=np.pi/500):
+    def animate_persistent(cls, frame, dphi=np.pi/500):
         """animates with new draws instead of redraws"""
+        if frame == 0:
+            return
         cls.rotate_all(dphi)
         for geod in cls.all_geods:
             geod.plot_one_geod()
 
     @classmethod
-    def animate_hyperbolic_translation(cls, dmult=1.001):
+    def animate_hyperbolic_translation(cls, frame, dmult=1.001):
+        if frame == 0:
+            return
         cls.hyperbolic_translate_all(dmult)
         cls.update_plot()
 
     @classmethod
-    def animate(cls, dphi=np.pi/180):
+    def animate(cls, frame, dphi=np.pi/180):
+        if frame == 0:
+            return
         assert len(cls.plotted_geods)==len(cls.all_geods),\
                 "plotted {0} geodesic but I have {1}".format(
                         len(cls.plotted_geods), len(cls.all_geods))
@@ -138,7 +144,9 @@ class Geodesic:
         cls.update_plot()
 
     @classmethod
-    def animate_translation(cls, dx=0.01):
+    def animate_translation(cls, frame, dx=0.01):
+        if frame == 0:
+            return
         assert len(cls.plotted_geods)==len(cls.all_geods),\
                 "plotted {0} geodesic but I have {1}".format(
                         len(cls.plotted_geods), len(cls.all_geods))
