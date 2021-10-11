@@ -33,6 +33,8 @@ do_this.add_argument('-e', '--elliptic', dest='ani_type',
 do_this.add_argument('-t', '--tesselate', action='store_true')
 do_this.add_argument('-s', '--subgroup', action='store_true')
 
+parser.add_argument('-o', '--output', default=None, help='save the animation as an mp4 file')
+
 args = parser.parse_args()
 
 which_geodesic = {'disc': dgd.DiscGeodesic, 'uhs': ugd.UpperGeodesic}
@@ -57,7 +59,10 @@ def main_animation(isom_type='hyperbolic'):
                             it.repeat(ani_type[1], 1000), repeat=False,
                             interval=50)
 
-    plt.show()
+    if args.output is None:
+        plt.show()
+    else:
+        ani.save(args.output + ".mp4")
 
 
 def main_tesselation():
