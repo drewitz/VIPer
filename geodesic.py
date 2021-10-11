@@ -60,6 +60,12 @@ class Geodesic:
         else:
             return(False)
 
+    def __repr__(self):
+        return f"Geodesic{self}"
+
+    def __str__(self):
+        return f"({self.start}, {self.end})"
+
     def sort_se(self):
         """sort start and end - depends on model"""
         raise NotImplementedError
@@ -123,7 +129,7 @@ class Geodesic:
         cls.update_plot()
 
     @classmethod
-    def animate(cls, dphi=np.pi/500):
+    def animate(cls, dphi=np.pi/180):
         assert len(cls.plotted_geods)==len(cls.all_geods),\
                 "plotted {0} geodesic but I have {1}".format(
                         len(cls.plotted_geods), len(cls.all_geods))
